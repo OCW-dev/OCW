@@ -16,7 +16,7 @@ import { Interface } from "readline";
 import { Console } from "console";
 import { type } from "os";
 
-import { OKX_API } from "./okx_api.js";
+
 import * as dotenv from 'dotenv';
 dotenv.config();
 
