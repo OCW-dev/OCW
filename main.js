@@ -224,23 +224,6 @@ async function GenWallet(wallet, chainIndex, timestamp){
 
 async function create_account(wallet_credentials, timestamp_str, timestamp_isos) {
 
-    
-        // const headers = {
-    //     'OK-ACCESS-PROJECT': process.env.PROJECT_ID,
-    //     'OK-ACCESS-KEY': process.env.API,
-    //     'OK-ACCESS-PASSPHRASE': process.env.PASSPHRASE
-    // }
-    // const okx_api = new OKX_API(headers);
-    // headers = okx_api.configure_headers(required_url, "POST", body, true);
-    // const api_params = { method: "POST", headers, body };
-    // const req = new Request("https://www.okx.com" + required_url, api_params);
-    // const account_id = await okx_api.sendFetch(req);
-    // const return_data = Object.assign({}, {
-    //   code: account_id.code,
-    //   msg: account_id.msg,
-    //   data: account_id.data.map((item) => ({ accountId: item.accountId }))
-    // });
-    // return return_data;
 
     const required_url = `/api/v5/wallet/account/create-account`;
   
@@ -445,78 +428,8 @@ async function run(){
     
     
 
-    // const body = JSON.stringify({
-    //     addresses: [
-    //       {
-    //         chainIndex: "1",
-    //         address: ethWalletCreds.address,
-    //         publicKey: ethWalletCreds.publicKey,
-    //         signature: ethWalletCreds.signature
-    //       },
-    //       {
-    //         chainIndex: "10",
-    //         address: ethWalletCreds.address,
-    //         publicKey: ethWalletCreds.publicKey,
-    //         signature: ethWalletCreds.signature
-    //       },
-    //       {
-    //         chainIndex: "43114",
-    //         address: ethWalletCreds.address,
-    //         publicKey: ethWalletCreds.publicKey,
-    //         signature: ethWalletCreds.signature
-    //       },
-    //       {
-    //         chainIndex: "42161",
-    //         address: ethWalletCreds.address,
-    //         publicKey: ethWalletCreds.publicKey,
-    //         signature: ethWalletCreds.signature
-    //       },
-    //       {
-    //         chainIndex: "56",
-    //         address: ethWalletCreds.address,
-    //         publicKey: ethWalletCreds.publicKey,
-    //         signature: ethWalletCreds.signature
-    //       },
-    //     ],
-    //     signMessage: timestamp_str
-    //   });
 
-    // let sign_creation = CryptoJS.enc.Base64.stringify(CryptoJS.HmacSHA256(timestamp_isos + 'POST' + '/api/v5/wallet/account/create-account' + body, '6DF35789346D0AC222C6268E2C6B6021'));
-
-
-  
-
-
-    // fetch('https://www.okx.com/api/v5/wallet/account/create-account', {
-    //     method: 'POST',
-    //     headers: {
-    //         'Content-type': 'application/json; charset=UTF-8',
-    //         'OK-ACCESS-PROJECT': apiConfig['project'],
-    //         'OK-ACCESS-KEY': 'f016cc3f-5271-4570-83a3-0669adb8213f',
-    //         'OK-ACCESS-SIGN': sign_creation,
-    //         'OK-ACCESS-PASSPHRASE': apiConfig['passphrase'],
-    //         'OK-ACCESS-TIMESTAMP': timestamp_isos
-    
-    //     },
-    //     body: body
-    // })        
-    // .then((response) => response.json())
-    // .then((json) => console.log(json));
-
-    // let sign_info = CryptoJS.enc.Base64.stringify(CryptoJS.HmacSHA256(timestamp_isos + 'GET' + '/api/v5/wallet/account/account-detail?accountId=0e463c4b-c775-4b40-a919-20371c820665', '6DF35789346D0AC222C6268E2C6B6021'));
-
-    // fetch('https://www.okx.com/api/v5/wallet/account/account-detail?accountId=0e463c4b-c775-4b40-a919-20371c820665', {
-    //     headers: {
-    //         'Content-type': 'application/json; charset=UTF-8',
-    //         'OK-ACCESS-PROJECT': apiConfig['project'],
-    //         'OK-ACCESS-KEY': 'f016cc3f-5271-4570-83a3-0669adb8213f',
-    //         'OK-ACCESS-SIGN': sign_info,
-    //         'OK-ACCESS-PASSPHRASE': apiConfig['passphrase'],
-    //         'OK-ACCESS-TIMESTAMP': timestamp_isos
-    //     }
-    // })    
-    // .then((response) => response.json())
-    // .then((json) => console.log(json));;
+   
 
 }
 
