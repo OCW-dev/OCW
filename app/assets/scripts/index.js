@@ -15,13 +15,13 @@ document.addEventListener("DOMContentLoaded", () => {
   document
     .getElementById("btn_receive_page")
     .addEventListener("click", function () {
-      window.location.href = "select_crypto_recieve.html";
+      window.location.href = "select_crypto_to_recieve.html";
     });
 
   document
     .getElementById("btn_send_page")
     .addEventListener("click", function () {
-      window.location.href = "select_crypto_send.html";
+      window.location.href = "select_crypto_to_send.html";
     });
 
   document

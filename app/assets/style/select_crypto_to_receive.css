@@ -30,7 +30,7 @@ button {
     background: #000000;
     overflow: hidden;
 }
-.arrow {
+.back-button {
     position: relative;
     width: calc(1 * var(--rpx));
     height: calc(1.2889458389508945e-8 * var(--rpx));
