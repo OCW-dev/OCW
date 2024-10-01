@@ -1,0 +1,136 @@
+:root {
+  --default-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Ubuntu, "Helvetica Neue", Helvetica, Arial, "PingFang SC",
+    "Hiragino Sans GB", "Microsoft Yahei UI", "Microsoft Yahei",
+    "Source Han Sans CN", sans-serif;
+}
+
+.main-container {
+  overflow: hidden;
+}
+
+.main-container,
+.main-container * {
+  box-sizing: border-box;
+}
+
+input,
+select,
+textarea,
+button {
+  outline: 0;
+}
+
+.main-container {
+  position: relative;
+  width: 430px;
+  height: 922px;
+  margin: 0 auto;
+  background: #000000;
+  overflow: hidden;
+}
+.arrow {
+  position: relative;
+  width: 1px;
+  height: 0px;
+  margin: 40px 0 0 30px;
+  background: url(../assets/images/db3ed46f-dd93-43f2-bb3e-8cbbaece22e5.png)
+    no-repeat center;
+  background-size: cover;
+  z-index: 7;
+}
+.flex-column-dd {
+  position: relative;
+  width: 246px;
+  height: 490.5px;
+  margin: 40px 0 0 92px;
+  font-size: 0px;
+  z-index: 6;
+  overflow: visible auto;
+}
+.scan-qr-code {
+  display: block;
+  position: relative;
+  height: 30px;
+  margin: 0 0 0 30px;
+  color: #ffffff;
+  font-family: Montserrat, var(--default-font-family);
+  font-size: 25px;
+  font-weight: 700;
+  line-height: 30px;
+  text-align: left;
+  white-space: nowrap;
+}
+.find-qr-address {
+  display: block;
+  position: relative;
+  height: 20px;
+  margin: 15px 0 0 0;
+  color: #ffffff;
+  font-family: Montserrat, var(--default-font-family);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 19.504px;
+  text-align: left;
+  white-space: nowrap;
+  z-index: 1;
+}
+.rectangle {
+  position: absolute;
+  width: 220px;
+  height: 220px;
+  top: 271px;
+  left: 13.5px;
+  background: rgba(217, 217, 217, 0.3);
+  z-index: 6;
+}
+.flex-column-fdb {
+  position: absolute;
+  width: 48px;
+  height: 221px;
+  top: -1px;
+  left: 173px;
+  z-index: 5;
+}
+.vector {
+  position: relative;
+  width: 49.5px;
+  height: 49.5px;
+  margin: -1.5px 0 0 0;
+  background: url(../assets/images/59eaa282-c9a7-4e15-a582-a3d886aaee5b.png)
+    no-repeat center;
+  background-size: cover;
+  z-index: 3;
+}
+.vector-1 {
+  position: relative;
+  width: 49.5px;
+  height: 49.5px;
+  margin: 125px 0 0 0;
+  background: url(../assets/images/7772e81f-9a2b-4e7f-948b-52a7959587fe.png)
+    no-repeat center;
+  background-size: cover;
+  z-index: 5;
+}
+.vector-2 {
+  position: absolute;
+  width: 49.5px;
+  height: 49.5px;
+  top: -1.5px;
+  left: -2.5px;
+  background: url(../assets/images/ab2082c8-bca2-4a73-adb3-95d4481843d1.png)
+    no-repeat center;
+  background-size: cover;
+  z-index: 2;
+}
+.vector-3 {
+  position: absolute;
+  width: 49.5px;
+  height: 49.5px;
+  top: 442.5px;
+  left: 10.5px;
+  background: url(../assets/images/71eb86cb-428c-4b11-b36a-a424bd0212bb.png)
+    no-repeat center;
+  background-size: cover;
+  z-index: 4;
+}
