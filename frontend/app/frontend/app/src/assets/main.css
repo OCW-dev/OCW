@@ -461,6 +461,8 @@ button:active {
   margin: calc(34.5640869140625 * var(--rpx)) 0 0 calc(34 * var(--rpx));
   z-index: 17;
 }
+
+
 .eth {
   display: flex;
   align-items: flex-start;
@@ -501,8 +503,7 @@ button:active {
   right: calc(345 * var(--rpx));
   bottom: calc(1 * var(--rpx));
   left: 0;
-  background: url(../assets/images/9f7ceb66-94c8-42ba-a039-bd6b09068890.png)
-    no-repeat center;
+
   background-size: cover;
   z-index: 12;
   overflow: hidden;
