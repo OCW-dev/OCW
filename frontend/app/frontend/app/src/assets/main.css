@@ -503,11 +503,12 @@ button:active {
   right: calc(345 * var(--rpx));
   bottom: calc(1 * var(--rpx));
   left: 0;
-
   background-size: cover;
   z-index: 12;
   overflow: hidden;
   border-radius: calc(17 * var(--rpx));
+  width: calc(30 * var(--rpx));
+  height: calc(30 * var(--rpx));
 }
 .dollar-a {
   display: flex;

@@ -1,12 +1,12 @@
 <template>
   <div class="flex-row-e">
     <span class="eth">{{ currency }}</span>
-    <span class="dot">{{ price }}</span>
+    <span class="dot">{{ dollarValue }}</span>
     <img :src="imageUrl" alt="coin" class="picture-eth">
-    <span class="dollar-a">{{ dollarValue }}</span>
-    <span class="percentageChange">{{ percentageChange }}</span>
+    <span class="dollar-a">{{ price }}</span>
+    <span :style="{ color: getColor(percentageChange) }" class="percentage"> {{ formatPercentage(percentageChange) }} </span> 
     <span class="dollar-b">{{ totalValue }}</span>
-    
+
 
   </div>
 </template>
@@ -45,7 +45,15 @@ export default {
       required: true
     }
 
-    }
+    },
+    methods: {
+    getColor(percentage) {
+      return percentage >= 0 ? '#26de5b' : '#b81b1b';
+    },
+    formatPercentage(percentage) {
+      return (percentage >= 0 ? '+' : '') + percentage.toFixed(2) + '%';
+    },
+  }
 };
 </script>
 

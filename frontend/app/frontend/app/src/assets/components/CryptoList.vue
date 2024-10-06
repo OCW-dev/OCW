@@ -4,10 +4,10 @@
       v-for="(crypto, index) in cryptos"
       :key="index"
       :currency="getShortName(crypto.id)"
-      :price="crypto.current_price.toFixed(2)"
-      :dollarValue="`${1.1}$`"
+      :price="`$${crypto.current_price.toFixed(2)}`"
+      :dollarValue="`${1.1}`"
       :percentageChange="(crypto.price_change_percentage_24h || 0).toFixed(2) + '%'"
-      :totalValue="`${1.1}$`"
+      :totalValue="`$${1.1}`"
       :symbolIcon="getShortName(crypto.id).toLowerCase()"
       :imageUrl="crypto.image"
     />
