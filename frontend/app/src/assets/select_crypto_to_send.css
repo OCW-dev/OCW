@@ -1,0 +1,492 @@
+:root {
+    --default-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        Ubuntu, "Helvetica Neue", Helvetica, Arial, "PingFang SC",
+        "Hiragino Sans GB", "Microsoft Yahei UI", "Microsoft Yahei",
+        "Source Han Sans CN", sans-serif;
+}
+
+.main-container {
+    overflow: hidden;
+}
+
+.main-container,
+.main-container * {
+    box-sizing: border-box;
+}
+
+input,
+select,
+textarea,
+button {
+    outline: 0;
+}
+
+.main-container {
+    position: relative;
+    width: 430px;
+    height: 555px;
+    margin: 0 auto;
+    background: #000000;
+    overflow: hidden;
+}
+.arrow {
+    position: relative;
+    width: 1px;
+    height: 0px;
+    margin: 40px 0 0 27px;
+    background: url(../assets/images/394f8a2e-27c8-4d2e-9889-b88bac08722c.png)
+        no-repeat center;
+    background-size: cover;
+}
+.select-crypt-to-send {
+    display: block;
+    position: relative;
+    height: 33px;
+    margin: 30px 0 0 27px;
+    color: #ffffff;
+    font-family: Montserrat, var(--default-font-family);
+    font-size: 25px;
+    font-weight: 500;
+    line-height: 32.64px;
+    text-align: left;
+    white-space: nowrap;
+    z-index: 1;
+}
+.flex-row-f {
+    position: relative;
+    width: 375px;
+    height: 32px;
+    margin: 30px 0 0 27px;
+    z-index: 8;
+}
+.eth {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    position: absolute;
+    height: 20px;
+    top: 0;
+    left: 39px;
+    color: #ffffff;
+    font-family: Montserrat, var(--default-font-family);
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 19.504px;
+    text-align: left;
+    white-space: nowrap;
+    z-index: 4;
+}
+.dot {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    position: absolute;
+    height: 20px;
+    top: 0;
+    left: 301px;
+    color: #ffffff;
+    font-family: Montserrat, var(--default-font-family);
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 19.504px;
+    text-align: left;
+    white-space: nowrap;
+    z-index: 5;
+}
+.picture-eth {
+    position: absolute;
+    top: 1px;
+    right: 345px;
+    bottom: 1px;
+    left: 0;
+    background: url(../assets/images/e7529b22-3d32-4c34-a8d6-2add1201d638.png)
+        no-repeat center;
+    background-size: cover;
+    z-index: 3;
+    overflow: hidden;
+    border-radius: 17px;
+}
+.dollar-amount {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    position: absolute;
+    height: 12px;
+    top: 20px;
+    left: 39px;
+    color: #545454;
+    font-family: Montserrat, var(--default-font-family);
+    font-size: 10px;
+    font-weight: 600;
+    line-height: 12px;
+    text-align: left;
+    white-space: nowrap;
+    z-index: 6;
+}
+.percentage {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    position: absolute;
+    height: 12px;
+    top: 20px;
+    left: 92px;
+    color: #26de5b;
+    font-family: Montserrat, var(--default-font-family);
+    font-size: 10px;
+    font-weight: 600;
+    line-height: 12px;
+    text-align: left;
+    white-space: nowrap;
+    z-index: 8;
+}
+.dollar-amount-1 {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    position: absolute;
+    height: 12px;
+    top: 20px;
+    left: 301px;
+    color: #545454;
+    font-family: Montserrat, var(--default-font-family);
+    font-size: 10px;
+    font-weight: 600;
+    line-height: 12px;
+    text-align: left;
+    white-space: nowrap;
+    z-index: 7;
+}
+.flex-row {
+    position: relative;
+    width: 365px;
+    height: 32px;
+    margin: 25px 0 0 27px;
+    z-index: 22;
+}
+.currency {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    position: absolute;
+    height: 20px;
+    top: 0;
+    left: 39px;
+    color: #ffffff;
+    font-family: Montserrat, var(--default-font-family);
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 19.504px;
+    text-align: left;
+    white-space: nowrap;
+    z-index: 17;
+}
+.currency-value {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    position: absolute;
+    height: 20px;
+    top: 0;
+    left: 301px;
+    color: #ffffff;
+    font-family: Montserrat, var(--default-font-family);
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 19.504px;
+    text-align: left;
+    white-space: nowrap;
+    z-index: 18;
+}
+.image {
+    position: absolute;
+    top: 1px;
+    right: 335px;
+    bottom: 1px;
+    left: 0;
+    background: url(../assets/images/be7d11ec-d2a6-477d-ab64-aa243270b26b.png)
+        no-repeat center;
+    background-size: cover;
+    z-index: 22;
+    overflow: hidden;
+    border-radius: 17px;
+}
+.dollar-value {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    position: absolute;
+    height: 12px;
+    top: 20px;
+    left: 39px;
+    color: #545454;
+    font-family: Montserrat, var(--default-font-family);
+    font-size: 10px;
+    font-weight: 600;
+    line-height: 12px;
+    text-align: left;
+    white-space: nowrap;
+    z-index: 19;
+}
+.percentage-change {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    position: absolute;
+    height: 12px;
+    top: 20px;
+    left: 82px;
+    color: #26de5b;
+    font-family: Montserrat, var(--default-font-family);
+    font-size: 10px;
+    font-weight: 600;
+    line-height: 12px;
+    text-align: left;
+    white-space: nowrap;
+    z-index: 21;
+}
+.dollar-amount-2 {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    position: absolute;
+    height: 12px;
+    top: 20px;
+    left: 301px;
+    color: #545454;
+    font-family: Montserrat, var(--default-font-family);
+    font-size: 10px;
+    font-weight: 600;
+    line-height: 12px;
+    text-align: left;
+    white-space: nowrap;
+    z-index: 20;
+}
+.flex-row-fc {
+    position: relative;
+    width: 344px;
+    height: 30px;
+    margin: 25px 0 0 27px;
+    z-index: 29;
+}
+.decimal-number {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    position: absolute;
+    height: 20px;
+    top: 0;
+    left: 301px;
+    color: #ffffff;
+    font-family: Montserrat, var(--default-font-family);
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 19.504px;
+    text-align: left;
+    white-space: nowrap;
+    z-index: 25;
+}
+.regroup-colon {
+    position: absolute;
+    top: 0;
+    right: 257px;
+    bottom: 0;
+    left: 0;
+    z-index: 29;
+}
+.usdc-picture {
+    position: absolute;
+    top: 0;
+    right: 57px;
+    bottom: 0;
+    left: 0;
+    background: url(../assets/images/45927227-d6bb-40d4-bba7-c837e2ef867e.png)
+        no-repeat center;
+    background-size: cover;
+    z-index: 29;
+    overflow: hidden;
+    border-radius: 17px;
+}
+.usdc {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    position: absolute;
+    height: 20px;
+    top: 0;
+    left: 39px;
+    color: #ffffff;
+    font-family: Montserrat, var(--default-font-family);
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 19.504px;
+    text-align: left;
+    white-space: nowrap;
+    z-index: 24;
+}
+.flex-row-f-3 {
+    position: relative;
+    width: 296px;
+    height: 12px;
+    margin: -10px 0 0 66px;
+    z-index: 28;
+}
+.dollar {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    position: absolute;
+    height: 12px;
+    top: 0;
+    left: 262px;
+    color: #545454;
+    font-family: Montserrat, var(--default-font-family);
+    font-size: 10px;
+    font-weight: 600;
+    line-height: 12px;
+    text-align: left;
+    white-space: nowrap;
+    z-index: 27;
+}
+.regroup {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: absolute;
+    width: 80px;
+    height: 12px;
+    top: 0;
+    left: 0;
+    z-index: 28;
+}
+.dollar-4 {
+    flex-shrink: 0;
+    position: relative;
+    height: 12px;
+    color: #545454;
+    font-family: Montserrat, var(--default-font-family);
+    font-size: 10px;
+    font-weight: 600;
+    line-height: 12px;
+    text-align: left;
+    white-space: nowrap;
+    z-index: 26;
+}
+.negative-percent {
+    flex-shrink: 0;
+    position: relative;
+    height: 12px;
+    color: #b81b1b;
+    font-family: Montserrat, var(--default-font-family);
+    font-size: 10px;
+    font-weight: 600;
+    line-height: 12px;
+    text-align: left;
+    white-space: nowrap;
+    z-index: 28;
+}
+.flex-row-c {
+    position: relative;
+    width: 375px;
+    height: 32px;
+    margin: 25px 0 0 27px;
+    z-index: 15;
+}
+.eth-5 {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    position: absolute;
+    height: 20px;
+    top: 0;
+    left: 39px;
+    color: #ffffff;
+    font-family: Montserrat, var(--default-font-family);
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 19.504px;
+    text-align: left;
+    white-space: nowrap;
+    z-index: 11;
+}
+.dot-6 {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    position: absolute;
+    height: 20px;
+    top: 0;
+    left: 301px;
+    color: #ffffff;
+    font-family: Montserrat, var(--default-font-family);
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 19.504px;
+    text-align: left;
+    white-space: nowrap;
+    z-index: 12;
+}
+.picture-eth-7 {
+    position: absolute;
+    top: 1px;
+    right: 345px;
+    bottom: 1px;
+    left: 0;
+    background: url(../assets/images/d9f33fea-aa00-4d9f-8fc4-1338b6709055.png)
+        no-repeat center;
+    background-size: cover;
+    z-index: 10;
+    overflow: hidden;
+    border-radius: 17px;
+}
+.dollar-8 {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    position: absolute;
+    height: 12px;
+    top: 20px;
+    left: 39px;
+    color: #545454;
+    font-family: Montserrat, var(--default-font-family);
+    font-size: 10px;
+    font-weight: 600;
+    line-height: 12px;
+    text-align: left;
+    white-space: nowrap;
+    z-index: 13;
+}
+.percentage-9 {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    position: absolute;
+    height: 12px;
+    top: 20px;
+    left: 92px;
+    color: #26de5b;
+    font-family: Montserrat, var(--default-font-family);
+    font-size: 10px;
+    font-weight: 600;
+    line-height: 12px;
+    text-align: left;
+    white-space: nowrap;
+    z-index: 15;
+}
+.dollar-a {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    position: absolute;
+    height: 12px;
+    top: 20px;
+    left: 301px;
+    color: #545454;
+    font-family: Montserrat, var(--default-font-family);
+    font-size: 10px;
+    font-weight: 600;
+    line-height: 12px;
+    text-align: left;
+    white-space: nowrap;
+    z-index: 14;
+}
