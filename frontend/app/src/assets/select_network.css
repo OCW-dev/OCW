@@ -30,6 +30,19 @@ button {
   background: #000000;
   overflow: hidden;
 }
+.back {
+  position: absolute;
+  width: calc(20 * var(--rpx));
+  height: calc(20 * var(--rpx));
+  top: calc(20 * var(--rpx));
+  left: calc(35 * var(--rpx));
+  background: url(../assets/images/80c6e76d-d2e0-4f0a-bb6e-2865912be671.png) no-repeat center;
+  transform: translate(-50%, -50%) rotate(270deg);
+  background-size: 100% 100%;
+  z-index: 1;
+}
+
+
 .arrow {
   position: relative;
   width: calc(1 * var(--rpx));

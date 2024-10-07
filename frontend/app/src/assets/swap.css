@@ -3,6 +3,7 @@
     Ubuntu, "Helvetica Neue", Helvetica, Arial, "PingFang SC",
     "Hiragino Sans GB", "Microsoft Yahei UI", "Microsoft Yahei",
     "Source Han Sans CN", sans-serif;
+  --rpx: 100vw / 430;
 }
 
 .main-container {
@@ -23,49 +24,63 @@ button {
 
 .main-container {
   position: relative;
-  width: 430px;
-  height: 629px;
+  width: calc(430 * var(--rpx));
+  height: calc(629 * var(--rpx));
   margin: 0 auto;
   background: #000000;
   overflow: hidden;
 }
+
+.back {
+  position: absolute;
+  width: calc(20 * var(--rpx));
+  height: calc(20 * var(--rpx));
+  top: calc(20 * var(--rpx));
+  left: calc(35 * var(--rpx));
+  background: url(../assets/images/80c6e76d-d2e0-4f0a-bb6e-2865912be671.png) no-repeat center;
+  transform: translate(-50%, -50%) rotate(270deg);
+  background-size: 100% 100%;
+  z-index: 1;
+}
+
+
 .arrow {
   position: relative;
-  width: 1px;
-  height: 0px;
-  margin: 40px 0 0 30px;
-  background: url(../assets/images/955ce4f6-7b73-4bcd-b2fd-7b9e72739fd4.png)
+  width: calc(1 * var(--rpx));
+  height: calc(1.288947260036366e-8 * var(--rpx));
+  margin: calc(40 * var(--rpx)) 0 0 calc(30 * var(--rpx));
+  background: url(../assets/images/18f4997a-83ae-49a0-bc3b-f0e040467dfb.png)
     no-repeat center;
   background-size: cover;
 }
 .swap {
   display: block;
   position: relative;
-  height: 33px;
-  margin: 30px 0 0 30px;
+  height: calc(33 * var(--rpx));
+  margin: calc(29.999999987110527 * var(--rpx)) 0 0 calc(30 * var(--rpx));
   color: #ffffff;
   font-family: Montserrat, var(--default-font-family);
-  font-size: 25px;
+  font-size: calc(25 * var(--rpx));
   font-weight: 700;
-  line-height: 32.64px;
+  line-height: calc(32.63999938964844 * var(--rpx));
   text-align: left;
   white-space: nowrap;
   z-index: 1;
 }
 .rectangle {
   position: relative;
-  width: 380px;
-  height: 100px;
-  margin: 33px 0 0 25px;
+  width: calc(380 * var(--rpx));
+  height: calc(100 * var(--rpx));
+  margin: calc(33 * var(--rpx)) 0 0 calc(25 * var(--rpx));
   background: #212121;
   z-index: 2;
   overflow: visible auto;
 }
 .flex-row-bc {
   position: relative;
-  width: 330px;
-  height: 33px;
-  margin: 10px 0 0 20px;
+  width: calc(330 * var(--rpx));
+  height: calc(33 * var(--rpx));
+  margin: calc(10 * var(--rpx)) 0 0 calc(20 * var(--rpx));
   z-index: 7;
 }
 .balance {
@@ -73,14 +88,14 @@ button {
   align-items: center;
   justify-content: flex-start;
   position: absolute;
-  height: 25px;
+  height: calc(25 * var(--rpx));
   top: 0;
-  left: 251px;
+  left: calc(251 * var(--rpx));
   color: #ffffff;
   font-family: Montserrat, var(--default-font-family);
-  font-size: 15px;
+  font-size: calc(15 * var(--rpx));
   font-weight: 500;
-  line-height: 25px;
+  line-height: calc(25 * var(--rpx));
   text-align: left;
   white-space: nowrap;
   z-index: 7;
@@ -90,51 +105,51 @@ button {
   align-items: center;
   justify-content: flex-start;
   position: absolute;
-  height: 30px;
-  top: 3px;
+  height: calc(30 * var(--rpx));
+  top: calc(3 * var(--rpx));
   left: 0;
   color: #717171;
   font-family: Montserrat, var(--default-font-family);
-  font-size: 15px;
+  font-size: calc(15 * var(--rpx));
   font-weight: 500;
-  line-height: 30px;
+  line-height: calc(30 * var(--rpx));
   text-align: left;
   white-space: nowrap;
   z-index: 4;
 }
 .flex-row-eb {
   position: relative;
-  width: 330px;
-  height: 25px;
-  margin: 2px 0 0 20px;
+  width: calc(330 * var(--rpx));
+  height: calc(25 * var(--rpx));
+  margin: calc(2 * var(--rpx)) 0 0 calc(20 * var(--rpx));
   z-index: 10;
 }
-.picture-eth {
+.picture-eth-png {
   position: absolute;
   top: 0;
-  right: 305px;
+  right: calc(305 * var(--rpx));
   bottom: 0;
   left: 0;
-  background: url(../assets/images/4a89ebd2-22d8-4bec-b71a-389de1882704.png)
+  background: url(../assets/images/df512e4c-ccce-4542-96a8-e590a4aa3a04.png)
     no-repeat center;
   background-size: cover;
   z-index: 8;
   overflow: hidden;
-  border-radius: 17px;
+  border-radius: calc(17 * var(--rpx));
 }
 .eth {
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
   position: absolute;
-  height: 20px;
-  top: 3px;
-  left: 30px;
+  height: calc(20 * var(--rpx));
+  top: calc(3 * var(--rpx));
+  left: calc(30 * var(--rpx));
   color: #ffffff;
   font-family: Montserrat, var(--default-font-family);
-  font-size: 16px;
+  font-size: calc(16 * var(--rpx));
   font-weight: 600;
-  line-height: 19.504px;
+  line-height: calc(19.503999710083008 * var(--rpx));
   text-align: left;
   white-space: nowrap;
   z-index: 9;
@@ -144,23 +159,23 @@ button {
   align-items: flex-start;
   justify-content: flex-start;
   position: absolute;
-  height: 20px;
-  top: 3px;
-  left: 319px;
+  height: calc(20 * var(--rpx));
+  top: calc(3 * var(--rpx));
+  left: calc(319 * var(--rpx));
   color: #ffffff;
   font-family: Montserrat, var(--default-font-family);
-  font-size: 16px;
+  font-size: calc(16 * var(--rpx));
   font-weight: 600;
-  line-height: 19.504px;
+  line-height: calc(19.503999710083008 * var(--rpx));
   text-align: left;
   white-space: nowrap;
   z-index: 10;
 }
 .rectangle-1 {
   position: relative;
-  width: 380px;
-  height: 100px;
-  margin: 20px 0 0 25px;
+  width: calc(380 * var(--rpx));
+  height: calc(100 * var(--rpx));
+  margin: calc(20 * var(--rpx)) 0 0 calc(25 * var(--rpx));
   font-size: 0px;
   background: #212121;
   z-index: 3;
@@ -169,13 +184,13 @@ button {
 .receive {
   display: block;
   position: relative;
-  height: 30px;
-  margin: 13px 0 0 20px;
+  height: calc(30 * var(--rpx));
+  margin: calc(13 * var(--rpx)) 0 0 calc(20 * var(--rpx));
   color: #717171;
   font-family: Montserrat, var(--default-font-family);
-  font-size: 15px;
+  font-size: calc(15 * var(--rpx));
   font-weight: 500;
-  line-height: 30px;
+  line-height: calc(30 * var(--rpx));
   text-align: left;
   white-space: nowrap;
   z-index: 5;
@@ -185,20 +200,20 @@ button {
   align-items: center;
   justify-content: space-between;
   position: relative;
-  width: 329px;
-  height: 30px;
-  margin: 7px 0 0 21px;
+  width: calc(329 * var(--rpx));
+  height: calc(30 * var(--rpx));
+  margin: calc(7 * var(--rpx)) 0 0 calc(21 * var(--rpx));
   z-index: 11;
 }
 .select {
   flex-shrink: 0;
   position: relative;
-  height: 30px;
+  height: calc(30 * var(--rpx));
   color: #ffffff;
   font-family: Montserrat, var(--default-font-family);
-  font-size: 16px;
+  font-size: calc(16 * var(--rpx));
   font-weight: 500;
-  line-height: 30px;
+  line-height: calc(30 * var(--rpx));
   text-align: left;
   white-space: nowrap;
   z-index: 6;
@@ -206,12 +221,12 @@ button {
 .zero-2 {
   flex-shrink: 0;
   position: relative;
-  height: 20px;
+  height: calc(20 * var(--rpx));
   color: #ffffff;
   font-family: Montserrat, var(--default-font-family);
-  font-size: 16px;
+  font-size: calc(16 * var(--rpx));
   font-weight: 600;
-  line-height: 19.504px;
+  line-height: calc(19.503999710083008 * var(--rpx));
   text-align: left;
   white-space: nowrap;
   z-index: 11;
