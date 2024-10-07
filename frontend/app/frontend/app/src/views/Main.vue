@@ -4,56 +4,60 @@ import { RouterLink } from "vue-router";
 
 <template>
   <div class="main-container">
-    
     <div class="flex-row-ba">
-        <div class="switcher">
+      <div class="switcher">
         <div class="option" :class="{ selected: selected === 'Contest' }" @click="handleClick('Contest')"> Contest </div>
         <div class="option" :class="{ selected: selected === 'Wallet' }" @click="handleClick('Wallet')"> Wallet </div>
-        </div>
-        <div class="regroup">
-            <button class="btn-notifications"></button>
-            <button class="btn-search"></button>
-        </div>
-        <button class="icon"></button>
-    </div>
-
-    
-    
-    <div class="rectangle-2">
-      <div class="flex-column">
-        <span class="comma">783,930</span>
-        <div class="wallet-c-account">
-          <span class="wallet-c">Wallet C </span><span class="empty"> </span
-          ><span class="account">Account </span>
-        </div>
-        <button class="btn-copy"></button>
       </div>
-      <div class="image"></div>
-      <span class="dollar">$</span>
+      <div class="regroup">
+        <button class="btn-notifications"></button>
+        <button class="btn-search"></button>
+      </div>
+      <button class="icon"></button>
     </div>
 
-    <div class="flex-row">
-      <RouterLink class="rectangle-3" to="select_network">
-        <div class="ellipse"></div>
-        <span class="receive">Receive</span>
-        <div class="icon-4"></div>
-      </RouterLink>
+    <transition :name="transitionName">
+      <div v-if="selected === 'Contest'" key="contest" class="page contest">
+        <h1 class="contestpagetext">Страница Contest</h1>
+        <p>Здесь будет контент для конкурса.</p>
+      </div>
 
-      <RouterLink class="rectangle-5" to="select_crypto_to_send">
-        <div class="ellipse-6"></div>
-        <span class="send">Send</span>
-        <div class="icon-7"></div>
-      </RouterLink>
+      <div v-else-if="selected === 'Wallet'" key="wallet" class="page wallet">
+        <div class="rectangle-2">
+          <div class="flex-column">
+            <span class="comma">783,930</span>
+            <div class="wallet-c-account">
+              <span class="wallet-c">Wallet C </span><span class="empty"> </span
+              ><span class="account">Account </span>
+            </div>
+            <button class="btn-copy"></button>
+          </div>
+          <div class="image"></div>
+          <span class="dollar">$</span>
+        </div>
 
-      <RouterLink class="rectangle-8" to="swap">
-        <div class="ellipse-9"></div>
-        <span class="swap">Swap</span>
-        <div class="vector"></div>
-      </RouterLink>
-    </div>
+        <div class="flex-row">
+          <RouterLink class="rectangle-3" to="select_network">
+            <div class="ellipse"></div>
+            <span class="receive">Receive</span>
+            <div class="icon-4"></div>
+          </RouterLink>
 
-    <CryptoList />
-    
+          <RouterLink class="rectangle-5" to="select_crypto_to_send">
+            <div class="ellipse-6"></div>
+            <span class="send">Send</span>
+            <div class="icon-7"></div>
+          </RouterLink>
+
+          <RouterLink class="rectangle-8" to="swap">
+            <div class="ellipse-9"></div>
+            <span class="swap">Swap</span>
+            <div class="vector"></div>
+          </RouterLink>
+        </div>
+        <CryptoList />
+      </div>
+    </transition>
   </div>
 </template>
 
@@ -67,16 +71,20 @@ export default {
   data() {
     return {
       selected: 'Wallet',
-      cryptoData: {
-
-      }
+      transitionName: 'slide-left',
+      cryptoData: {}
     };
   },
   methods: {
     handleClick(option) {
-      this.selected = option;
-    },
-  },
+      if (this.selected !== option) {
+        this.transitionName = option === 'Contest' ? 'slide-left' : 'slide-right';
+        this.selected = option;
+      }
+    }
+  }
 };
 </script>
+
 <style src="../assets/main.css"></style>
+

@@ -29,25 +29,62 @@ button {
   cursor: pointer;
 }
 
-button:active {
-  transform: scale(0.98);
-}
-
-
-
-
-.main-container {
+.contest{
   position: relative;
   width: calc(430 * var(--rpx));
-  height: calc(917 * var(--rpx));
+  height: 2000px;
   margin: 0 auto;
   background: #000000;
   overflow: hidden;
 }
 
+button:active {
+  transform: scale(0.98);
+}
+.main-container {
+  position: relative;
+  width: calc(430 * var(--rpx));
+ 
+  margin: 0 auto;
+  background: #000000;
+  overflow: hidden;
+}
 
+/* Define the slide-left transition */
+.slide-left-enter-active, .slide-left-leave-active {
+  transition: transform 0.4s ease;
+}
+.slide-left-enter, .slide-left-leave-to {
+  transform: translateX(100%);
+}
 
+/* Define the slide-right transition */
+.slide-right-enter-active, .slide-right-leave-active {
+  transition: transform 0.4s ease;
+}
+.slide-right-enter, .slide-right-leave-to {
+  transform: translateX(-100%);
+}
 
+/* Other styles */
+.main-container {
+  overflow: hidden;
+}
+
+.option.selected {
+  background-color: #545454;
+  color: #ffffff;
+}
+.contestpagetext{
+  font-family: Montserrat, var(--default-font-family);
+  position: relative;
+  color: #fffdfd;
+  font-size: calc(35 * var(--rpx));
+  font-weight: 500;
+  display: block;
+  line-height: calc(38 * var(--rpx));
+  
+}
 
 
 .flex-row-ba {

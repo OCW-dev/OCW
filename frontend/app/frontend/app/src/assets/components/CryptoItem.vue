@@ -2,12 +2,10 @@
   <div class="flex-row-e">
     <span class="eth">{{ currency }}</span>
     <span class="dot">{{ dollarValue }}</span>
-    <img :src="imageUrl" alt="coin" class="picture-eth">
-    <span class="dollar-a">{{ price }}</span>
+    <img :src="imageUrl || '../images/question.png'" alt="coin" class="picture-eth">
+    <span class="dollar-a">${{ price }}</span>
     <span :style="{ color: getColor(percentageChange) }" class="percentage"> {{ formatPercentage(percentageChange) }} </span> 
-    <span class="dollar-b">{{ totalValue }}</span>
-
-
+    <span class="dollar-b">${{ formatTotalValueOnCrypto(dollarValue, price)   }}</span>
   </div>
 </template>
 
@@ -36,10 +34,6 @@ export default {
       type: String,
       required: true
     },
-    symbolIcon: {
-      type: String,
-      required: true
-    },
     imageUrl: {
       type: String,
       required: true
@@ -48,11 +42,23 @@ export default {
     },
     methods: {
     getColor(percentage) {
-      return percentage >= 0 ? '#26de5b' : '#b81b1b';
+      const num = parseFloat(percentage);
+      return num >= 0 ? '#26de5b' : '#b81b1b';
     },
     formatPercentage(percentage) {
-      return (percentage >= 0 ? '+' : '') + percentage.toFixed(2) + '%';
-    },
+      try {
+        const num = parseFloat(percentage);
+        return (num >= 0 ? '+' : '') + num.toFixed(2) + '%';
+      } catch (error) {
+        console.error("Ошибка форматирования процента:", error);
+        return percentage; 
+      }
+    }, 
+    formatTotalValueOnCrypto(dollarValue, price){
+      const num1 = parseFloat(dollarValue);
+      const num2 = parseFloat(price);
+      return (num1 * num2).toFixed(2);
+    } 
   }
 };
 </script>
@@ -136,7 +142,7 @@ export default {
   position: absolute;
   height: calc(12 * var(--rpx));
   top: calc(20 * var(--rpx));
-  left: calc(92 * var(--rpx));
+  left: calc(90 * var(--rpx));
   color: #26de5b;
   font-family: Montserrat, var(--default-font-family);
   font-size: calc(10 * var(--rpx));

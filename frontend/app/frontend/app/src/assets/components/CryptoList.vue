@@ -2,14 +2,13 @@
   <div>
     <CryptoItem
       v-for="(crypto, index) in cryptos"
-      :key="index"
+      :key="crypto.id"
       :currency="getShortName(crypto.id)"
-      :price="`$${crypto.current_price.toFixed(2)}`"
+      :price="`${crypto.current_price.toFixed(2)}`"
       :dollarValue="`${1.1}`"
       :percentageChange="(crypto.price_change_percentage_24h || 0).toFixed(2) + '%'"
       :totalValue="`$${1.1}`"
-      :symbolIcon="getShortName(crypto.id).toLowerCase()"
-      :imageUrl="crypto.image"
+      :imageUrl="crypto.image || '../images/question.png'"
     />
   </div>
 </template>
@@ -63,7 +62,7 @@ export default {
         }
     },
     getShortName(fullName) {
-      return cryptoSymbols[fullName] || fullName.toUpperCase(); // Возвращаем сокращение или оригинал в верхнем регистре
+      return cryptoSymbols[fullName] || fullName.toUpperCase(); 
     },
     startPriceUpdates() {
       setInterval(() => {
@@ -75,5 +74,5 @@ export default {
 </script>
 
 <style scoped>
-/* Ваш CSS код здесь (оставьте его без изменений) */
+/* CSS код  */
 </style>
