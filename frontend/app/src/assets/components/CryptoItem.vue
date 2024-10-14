@@ -1,5 +1,5 @@
 <template>
-  <div class="flex-row-e">
+  <div class="flex-row-e" @click="goToInfoCryptoPage">
     <span class="eth">{{ currency }}</span>
     <span class="dot">{{ dollarValue }}</span>
     <img :src="imageUrl || '../images/question.png'" alt="coin" class="picture-eth">
@@ -41,6 +41,15 @@ export default {
 
     },
     methods: {
+    goToInfoCryptoPage() {
+      this.$router.push({ path: '/info_crypto_page', query: { 
+        currency: this.currency, 
+        price: this.price, 
+        dollarValue: this.dollarValue, 
+        percentageChange: this.percentageChange,
+        totalValue: this.totalValue 
+      }});
+    },
     getColor(percentage) {
       const num = parseFloat(percentage);
       return num >= 0 ? '#26de5b' : '#b81b1b';
