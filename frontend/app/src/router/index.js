@@ -67,6 +67,46 @@ const router = createRouter({
       path: '/info_crypto_page',
       component: () => import("../assets/components/InfoCryptoPage.vue"),
     },
+    {
+      path: "/settings_page",
+      name: "settingspage",
+      // route level code-splitting
+      // this generates a separate chunk (About.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      component: () => import("../views/SettingsPage.vue"),
+    },
+    {
+      path: "/manual_page",
+      name: "manualpage",
+      // route level code-splitting
+      // this generates a separate chunk (About.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      component: () => import("../views/ManualPage.vue"),
+    },
+    {
+      path: "/dapp_connection",
+      name: "dappconnection",
+      // route level code-splitting
+      // this generates a separate chunk (About.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      component: () => import("../views/DappConnection.vue"),
+    },
+    {
+      path: "/history_page",
+      name: "historypage",
+      // route level code-splitting
+      // this generates a separate chunk (About.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      component: () => import("../views/HistoryPage.vue"),
+    },
+    {
+      path: "/notifications_page",
+      name: "notifications_page",
+      // route level code-splitting
+      // this generates a separate chunk (About.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      component: () => import("../views/NotificationsPage.vue"),
+    },
   ],
 });
 

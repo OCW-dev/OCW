@@ -50,7 +50,6 @@ button:active {
   overflow: hidden;
 }
 
-/* Define the slide-left transition */
 .slide-left-enter-active, .slide-left-leave-active {
   transition: transform 0.6s ease;
 }
@@ -58,7 +57,6 @@ button:active {
   transform: translateX(100%);
 }
 
-/* Define the slide-right transition */
 .slide-right-enter-active, .slide-right-leave-active {
   transition: transform 0.6s ease;
 }
@@ -66,7 +64,6 @@ button:active {
   transform: translateX(-100%);
 }
 
-/* Other styles */
 .main-container {
   overflow: hidden;
 }
@@ -85,7 +82,6 @@ button:active {
   line-height: calc(38 * var(--rpx));
   
 }
-
 
 .flex-row-ba {
   position: relative;
@@ -138,7 +134,6 @@ button:active {
   color: #ffffff;
 }
 
-
 .regroup {
   display: flex;
   align-items: center;
@@ -160,10 +155,6 @@ button:active {
   z-index: 91;
 }
 
-
-
-
-
 .btn-search {
   flex-shrink: 0;
   position: relative;
@@ -174,6 +165,7 @@ button:active {
   background-size: 100% 100%;
   z-index: 2;
 }
+
 .icon {
   position: absolute;
   width: calc(25.333251953125 * var(--rpx));
@@ -186,10 +178,42 @@ button:active {
   z-index: 1;
 }
 
+.popup-menu {
+  position: absolute;
+  background-color: #1e1e1e;
+  color: #ffffff;
+  border: none;
+  z-index: 1000;
+  border-radius: calc(12 * var(--rpx));
+  top: calc(0 * var(--rpx));
+  left: calc(-6 * var(--rpx));
+}
 
+.popup-menu ul {
+  list-style-type: none;
+  padding: 0;
+}
 
+.popup-menu li {
+  padding: 10px;
+  cursor: pointer;
+}
 
+.popup-menu li:hover {
+  background-color: #272727;
+  border-radius: calc(6 * var(--rpx));
+}
+.popup-menu li:active {
+  background-color: #424242;
+  transform: scale(0.98);
+}
 
+.popup-menu a {
+  text-decoration: none; /* Убираем подчеркивание */
+  color: inherit; /* Устанавливаем цвет текста по умолчанию */
+  font-family: Montserrat, var(--default-font-family);
+  
+}
 
 
 

@@ -1,5 +1,44 @@
 <script setup>
 import { RouterLink } from "vue-router";
+import { ref, onMounted, onBeforeUnmount } from "vue"; // Импортируем необходимые функции
+import CryptoList from '../assets/components/CryptoList.vue';
+
+const isMenuVisible = ref(false);
+const selected = ref('Wallet');
+const transitionName = ref('slide-left');
+
+function toggleMenu() {
+    isMenuVisible.value = !isMenuVisible.value;
+}
+
+function handleClick(option) {
+    if (selected.value !== option) {
+        transitionName.value = option === 'Contest' ? 'slide-left' : 'slide-right';
+        selected.value = option;
+    }
+}
+
+function handleMenuClick(option) {
+
+    isMenuVisible.value = false; // Закрываем меню после выбора
+}
+
+function handleClickOutside(event) {
+    const menuElement = document.querySelector('.popup-menu'); // Получаем элемент меню
+    const buttonElement = event.target.closest('.icon');
+
+    if (isMenuVisible.value && menuElement && !menuElement.contains(event.target) && !buttonElement) {
+        isMenuVisible.value = false;
+    }
+}
+
+onMounted(() => {
+    document.addEventListener('click', handleClickOutside);
+});
+
+onBeforeUnmount(() => {
+    document.removeEventListener('click', handleClickOutside);
+});
 </script>
 
 <template>
@@ -10,10 +49,18 @@ import { RouterLink } from "vue-router";
         <div class="option" :class="{ selected: selected === 'Wallet' }" @click="handleClick('Wallet')"> Wallet </div>
       </div>
       <div class="regroup">
-        <button class="btn-notifications"></button>
+         <RouterLink to="notifications_page"><button class="btn-notifications"></button></RouterLink>
         <button class="btn-search"></button>
       </div>
-      <button class="icon"></button>
+      <button class="icon" @click="toggleMenu"></button>
+      <div v-if="isMenuVisible" class="popup-menu">
+        <ul>
+            <RouterLink to="settings_page"><li @click="handleMenuClick('настройки')"> Настройки</li></RouterLink>
+            <RouterLink to="dapp_connection"><li @click="handleMenuClick('подключение Dapp')"> Подключение Dapp</li></RouterLink>
+            <RouterLink to="history_page"><li @click="handleMenuClick('история')"> История</li></RouterLink>
+            <RouterLink to="manual_page"><li @click="handleMenuClick('инструкция')"> Инструкция</li></RouterLink>
+        </ul>
+      </div>
     </div>
 
     <transition :name="transitionName">
@@ -27,8 +74,7 @@ import { RouterLink } from "vue-router";
           <div class="flex-column">
             <span class="comma">783,930</span>
             <div class="wallet-c-account">
-              <span class="wallet-c">Wallet C </span><span class="empty"> </span
-              ><span class="account">Account </span>
+              <span class="wallet-c">Wallet C </span><span class="empty"> </span><span class="account">Account </span>
             </div>
             <button class="btn-copy"></button>
           </div>
@@ -55,36 +101,11 @@ import { RouterLink } from "vue-router";
             <div class="vector"></div>
           </RouterLink>
         </div>
+
         <CryptoList />
       </div>
     </transition>
   </div>
 </template>
 
-<script>
-import CryptoList from '../assets/components/CryptoList.vue';
-
-export default {
-  components: {
-    CryptoList
-  },
-  data() {
-    return {
-      selected: 'Wallet',
-      transitionName: 'slide-left',
-      cryptoData: {}
-    };
-  },
-  methods: {
-    handleClick(option) {
-      if (this.selected !== option) {
-        this.transitionName = option === 'Contest' ? 'slide-left' : 'slide-right';
-        this.selected = option;
-      }
-    }
-  }
-};
-</script>
-
 <style src="../assets/main.css"></style>
-

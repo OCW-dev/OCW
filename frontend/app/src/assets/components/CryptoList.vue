@@ -50,7 +50,7 @@ export default {
         params: {
             vs_currency: 'usd',
             order: 'market_cap_desc',
-            per_page: 50,
+            per_page: 10,
             page: 1,
             sparkline: false
         }
