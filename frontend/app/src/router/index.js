@@ -1,9 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Main from "../views/Main.vue";
-import axios from 'axios';
-
-
-
 
 const router = createRouter({
   history: createWebHistory(),
@@ -50,6 +46,14 @@ const router = createRouter({
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: () => import("../views/SelectCryptoToSend.vue"),
+    },
+    {
+      path: "/send_crypto_page",
+      name: "send crypto page",
+      // route level code-splitting
+      // this generates a separate chunk (About.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      component: () => import("../views/SendCryptoPage.vue"),
     },
     {
       path: "/select_network",
@@ -110,6 +114,14 @@ const router = createRouter({
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: () => import("../views/NotificationsPage.vue"),
+    },
+    {
+      path: "/my_receive_adress",
+      name: "myreceiveadress",
+      // route level code-splitting
+      // this generates a separate chunk (About.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      component: () => import("../views/MyReceiveAdress.vue"),
     },
   ],
 });
