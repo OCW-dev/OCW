@@ -36,10 +36,35 @@ function handleClickOutside(event) {
 onBeforeUnmount(() => {
     document.removeEventListener('click', handleClickOutside);
 });
+
+</script>
+<script>
+export default {
+  computed: {
+    UserAccount() {
+      // Получаем данные из строки запроса
+      const query = this.$route.query;
+      
+      // Проверяем, есть ли необходимые данные
+      if (query.AccountName && query.AccountId) {
+        return {
+          AccountName: query.AccountName,
+          AccountId: Number(query.AccountId),
+          Balance: Number(query.Balance),
+          TelegramId: query.TelegramId,
+          WalletName: query.WalletName ? query.WalletName.split(',') : [], // Преобразуем строку обратно в массив
+        };
+      }
+      
+      return null; // Если данных нет, возвращаем null
+    },
+  },
+};
 </script>
 
+
 <template>
-  <div class="main-container">
+  <div class="main-container" v-if="UserAccount">
     <div class="flex-row-ba">
       <div class="switcher">
         <div class="option" :class="{ selected: selected === 'Contest' }" @click="handleClick('Contest')">Contest</div>
@@ -85,9 +110,9 @@ onBeforeUnmount(() => {
       <div v-else-if="selected === 'Wallet'" key="wallet" class="page wallet">
         <div class="rectangle-2">
           <div class="flex-column">
-            <span class="comma">783,930</span>
+            <span class="comma">{{ UserAccount.Balance }}</span>
             <div class="wallet-c-account">
-              <span class="wallet-c">Wallet C </span><span class="empty"> </span><span class="account">Account </span>
+              <span class="wallet-c">Wallet {{ UserAccount.WalletName[0] }} </span><span class="empty"> </span><span class="account"> {{ UserAccount.AccountName }} </span>
             </div>
             <button class="btn-copy"></button>
           </div>
@@ -396,6 +421,7 @@ button:active {
   font-weight: 600;
   line-height: calc(18.28499984741211 * var(--rpx));
   text-align: left;
+  left: calc(5 * var(--rpx));
 }
 .btn-copy {
   position: absolute;

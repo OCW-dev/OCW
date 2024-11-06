@@ -29,6 +29,14 @@ const router = createRouter({
       component: () => import("../views/ReceiveAddress.vue"),
     },
     {
+      path: "/reglogwalletpage",
+      name: "register login wallet page",
+      // route level code-splitting
+      // this generates a separate chunk (About.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      component: () => import("../views/RegLogWalletPage.vue"),
+    },
+    {
       path: "/scan_qr",
       name: "scan qr",
       // route level code-splitting
