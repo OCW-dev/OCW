@@ -1,112 +1,81 @@
 <template>
   <div class="main-container">
-    <RouterLink class="back" to="/main">
+    <RouterLink class="back" to="/swap">
     </RouterLink>
-    <span class="swap">Swap</span>
-    <div class="rectangle" @click="goToSelect('pay')">
+    <span class="swap">Confirm swap</span>
+
+
+
+    <div class="rectangle" v-if="payCurrency">
       <div class="flex-row-bc">
-        <span class="send">You pay</span><span class="balance" v-if="payCurrency">Balance: {{payCurrency.balance}}</span>
+        <span class="send">You pay</span> <span class="balance">You get</span>
       </div>
-      <div class="flex-row-eb" v-if="payCurrency">
-        <img :src="payCurrency.icon" alt="" class="picture-coin" />
-        <span class="cryptoId">{{ payCurrency.name }}</span>
-        <span class="dollar-a">${{ payCurrency.price }}</span>
-          <input 
-        type="text" 
-        v-model="inputText" 
-        placeholder='Count' 
-        class="inline-address" 
-        @input="validateInput"
-        @click.stop
-      />
-      <span class="swap_in_dollar">${{ (payCurrency.price * inputText).toFixed(5) }}</span>
+      <div class="flex-row-eb">
+        <img :src="payCurrency.icon" alt="coin" class="picture-coin" /> <img :src="receiveCurrency.icon" alt="coin" class="picture-coin2" />
+        <span class="cryptoId">{{ payCurrency.name }}</span>   <span class="cryptoId2">{{ receiveCurrency.name }}</span>
+        <span class="dollar-a">${{ payCurrency.price }}</span>   <span class="dollar-a2">${{ receiveCurrency.price }}</span>
       </div>
     </div>
 
-    <div class="rectangle-1" @click="goToSelect('receive')">
+    <div class="rectangle-1" v-if="receiveCurrency">
       <div class="flex-row-bc">
-        <span class="send">You receive </span>
+        <span class="send2">{{amount}} {{(payCurrency.name).toLowerCase()}}</span> 
+        <span class="send3">{{ ((payCurrency.price * this.amount) / receiveCurrency.price ).toFixed(5) }} {{ (receiveCurrency.name).toLowerCase() }}</span>
+        <button class="send4" @click="swapcrypto" >Swap</button>
       </div>
-      <div class="flex-row-eb" v-if="receiveCurrency">
-        <img :src="receiveCurrency.icon" alt="" class="picture-coin" />
-        <span class="cryptoId">{{ receiveCurrency.name }}</span>
-        <span class="dollar-a">${{ receiveCurrency.price }}</span>
-        <span class="zero">{{ ((payCurrency.price * inputText) / receiveCurrency.price ).toFixed(5) }}</span>
-      </div>
-    </div>
-    <div class="goSwap">
-      <button 
-          :class="{ 'button-disabled': !isSwapEnabled, 'button-enabled': isSwapEnabled }"
-          @click="swapCurrencies"
-          :disabled="!isSwapEnabled"
-        >Swap</button>
     </div>
   </div>
 </template>
 
 <script>
-import { mapState } from 'vuex';
-
 export default {
-
   data() {
     return {
-      inputText: '',
-      errorMessage: '',
+      payCurrency: null,
+      receiveCurrency: null,
+      amount: null,
     };
   },
-  computed: {
-    ...mapState(['payCurrency', 'receiveCurrency']),
-    isSwapEnabled() {
-      return this.payCurrency && this.receiveCurrency && this.inputText;
-    },
+  created() {
+    // Получаем данные из query-параметров
+    if (this.$route.query.payCurrency) {
+      this.payCurrency = JSON.parse(this.$route.query.payCurrency);
+    }
+    if (this.$route.query.receiveCurrency) {
+      this.receiveCurrency = JSON.parse(this.$route.query.receiveCurrency);
+    }
+    if (this.$route.query.amount) {
+      this.amount = JSON.parse(this.$route.query.amount);
+    }
   },
   methods: {
-    validateInput() {
-      // Удаляем все символы, кроме цифр, запятой и точки
-      const regex = /^[0-9]*[.,]?[0-9]*$/;
-      
-      // Проверяем вводимый текст на соответствие регулярному выражению
-      if (!this.inputText.match(regex)) {
-        this.errorMessage = 'Введите только цифры и запятую или точку.';
-        
-        // Удаляем последний введенный символ
-        this.inputText = this.inputText.slice(0, -1);
-        return;
-      }
-
-      // Преобразуем введенное значение в число
-      const inputValue = parseFloat(this.inputText.replace(',', '.'));
-
-      // Проверяем, не превышает ли значение баланс
-      if (inputValue > this.payCurrency.balance) {
-        this.errorMessage = `Сумма не может превышать ${this.payCurrency.balance}.`;
-        this.inputText = this.payCurrency.balance.toString(); // Устанавливаем максимальное значение
-      } else {
-        this.errorMessage = ''; 
-      }
-    },
-    goToSelect(type) {
-      this.$router.push({ name: "swap_select_crypto", params: { type } });
-    },
-
-    swapCurrencies() {
-      if (this.isSwapEnabled) {
-        this.$router.push({
-          name: "confirm_swap_page",
-          query: {
-            payCurrency: JSON.stringify(this.payCurrency),
-            receiveCurrency: JSON.stringify(this.receiveCurrency),
-            amount: parseFloat(this.inputText)
-          },
-        });
-      }
-    },
-  },
+    swapcrypto() {
+        alert(`Обмениваем ${this.payCurrency.name} на ${this.receiveCurrency.name}`);
+    }
+  }
 };
 </script>
 
 <style scoped>
+
+.amount{
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  position: absolute;
+  height: calc(20 * var(--rpx));
+  top: calc(3 * var(--rpx));
+  left: calc(120 * var(--rpx));
+  color: #ffffff;
+  font-family: Montserrat, var(--default-font-family);
+  font-size: calc(30 * var(--rpx));
+  font-weight: 600;
+  line-height: calc(19 * var(--rpx));
+  text-align: left;
+  white-space: nowrap;
+  z-index: 9;
+}
+
 .swap_in_dollar{
     display: flex;
     align-items: flex-start;
@@ -133,6 +102,23 @@ export default {
   height: calc(12 * var(--rpx));
   top: calc(24.5 * var(--rpx));
   left: calc(39 * var(--rpx));
+  color: #545454;
+  font-family: Montserrat, var(--default-font-family);
+  font-size: calc(10 * var(--rpx));
+  font-weight: 600;
+  line-height: calc(12 * var(--rpx));
+  text-align: left;
+  white-space: nowrap;
+  z-index: 15;
+}
+.dollar-a2 {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  position: absolute;
+  height: calc(12 * var(--rpx));
+  top: calc(24.5 * var(--rpx));
+  left: calc(235 * var(--rpx));
   color: #545454;
   font-family: Montserrat, var(--default-font-family);
   font-size: calc(10 * var(--rpx));
@@ -247,7 +233,40 @@ button {
   white-space: nowrap;
   z-index: 13;
 }
-
+.cryptoId2 {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  position: absolute;
+  height: calc(20 * var(--rpx));
+  top: 0;
+  left: calc(235 * var(--rpx));
+  color: #ffffff;
+  font-family: Montserrat, var(--default-font-family);
+  font-size: calc(16 * var(--rpx));
+  font-weight: 600;
+  line-height: calc(19.503999710083008 * var(--rpx));
+  text-align: left;
+  white-space: nowrap;
+  z-index: 13;
+}
+.cryptoId3{
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  position: absolute;
+  height: calc(20 * var(--rpx));
+  top: 0;
+  left: calc(200 * var(--rpx));
+  color: #ffffff;
+  font-family: Montserrat, var(--default-font-family);
+  font-size: calc(25 * var(--rpx));
+  font-weight: 600;
+  line-height: calc(19.503999710083008 * var(--rpx));
+  text-align: left;
+  white-space: nowrap;
+  z-index: 13;
+}
 .dot {
   display: flex;
   align-items: flex-start;
@@ -279,7 +298,18 @@ button {
   width: calc(30 * var(--rpx));
   height: calc(30 * var(--rpx));
 }
-
+.picture-coin2 {
+  position: absolute;
+  top: calc(1 * var(--rpx));
+  left: calc(190 * var(--rpx));
+  bottom: calc(1 * var(--rpx));
+  background-size: cover;
+  z-index: 12;
+  overflow: hidden;
+  border-radius: calc(17 * var(--rpx));
+  width: calc(30 * var(--rpx));
+  height: calc(30 * var(--rpx));
+}
 
 
 .back {
@@ -333,10 +363,27 @@ button {
   position: absolute;
   height: calc(25 * var(--rpx));
   top: 0;
-  left: calc(251 * var(--rpx));
+  left: calc(190 * var(--rpx));
   color: #717171;
   font-family: Montserrat, var(--default-font-family);
   font-size: calc(15 * var(--rpx));
+  font-weight: 500;
+  line-height: calc(25 * var(--rpx));
+  text-align: left;
+  white-space: nowrap;
+  z-index: 7;
+}
+.balance2 {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  position: absolute;
+  height: calc(25 * var(--rpx));
+  top: 0;
+  left: calc(190 * var(--rpx));
+  color: #ffffff;
+  font-family: Montserrat, var(--default-font-family);
+  font-size: calc(23 * var(--rpx));
   font-weight: 500;
   line-height: calc(25 * var(--rpx));
   text-align: left;
@@ -359,6 +406,58 @@ button {
   text-align: left;
   white-space: nowrap;
   z-index: 4;
+}
+.send2 {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  position: absolute;
+  height: calc(25 * var(--rpx));
+  top: calc(0 * var(--rpx));
+  left: 0;
+  color: #ffffff;
+  font-family: Montserrat, var(--default-font-family);
+  font-size: calc(23 * var(--rpx));
+  font-weight: 500;
+  line-height: calc(25 * var(--rpx));
+  text-align: left;
+  white-space: nowrap;
+  z-index: 4;
+}
+.send3 {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  position: absolute;
+  height: calc(25 * var(--rpx));
+  top: calc(25 * var(--rpx));
+  left: 0;
+  color: #ffffff;
+  font-family: Montserrat, var(--default-font-family);
+  font-size: calc(23 * var(--rpx));
+  font-weight: 500;
+  line-height: calc(25 * var(--rpx));
+  text-align: left;
+  white-space: nowrap;
+  z-index: 4;
+}
+.send4 {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  position: absolute;
+  height: calc(28 * var(--rpx));
+  top: calc(50 * var(--rpx));
+  left: 0;
+  color: #ffffff;
+  font-family: Montserrat, var(--default-font-family);
+  font-size: calc(23 * var(--rpx));
+  font-weight: 500;
+  line-height: calc(25 * var(--rpx));
+  text-align: left, top;
+  white-space: nowrap;
+  z-index: 4;
+  background: #4D9D44;
 }
 .flex-row-eb {
   position: relative;
@@ -435,7 +534,7 @@ button {
   position: relative;
   width: calc(380 * var(--rpx));
   height: calc(100 * var(--rpx));
-  margin: calc(33 * var(--rpx)) 0 0 calc(25 * var(--rpx));
+  margin: calc(5 * var(--rpx)) 0 0 calc(25 * var(--rpx));
   background: #212121;
   z-index: 3;
   overflow:hidden;
