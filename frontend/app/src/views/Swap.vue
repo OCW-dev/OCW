@@ -1,6 +1,6 @@
 <template>
   <div class="main-container">
-    <RouterLink class="back" to="/main">
+    <RouterLink class="back" to="/">
     </RouterLink>
     <span class="swap">Swap</span>
     <div class="rectangle" @click="goToSelect('pay')">
