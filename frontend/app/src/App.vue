@@ -34,5 +34,8 @@ html, body {
   overflow-y: hidden;
   background: #000000;
   max-height: 100%;
+  height: calc(1000 * var(--rpx));
 }
+
+
 </style>

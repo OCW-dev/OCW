@@ -47,6 +47,7 @@ import ChainList from "../assets/components/BlockChainRList.vue";
   text-align: left;
   white-space: nowrap;
   z-index: 1;
+  top: calc(10 * var(--rpx));
 }
 .rectangle {
   position: relative;

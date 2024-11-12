@@ -297,6 +297,7 @@ button {
 .swap {
   display: block;
   position: relative;
+  top: calc(10 * var(--rpx));
   height: calc(33 * var(--rpx));
   margin: calc(29.999999987110527 * var(--rpx)) 0 0 calc(30 * var(--rpx));
   color: #ffffff;

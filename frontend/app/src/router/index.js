@@ -20,6 +20,16 @@ const router = createRouter({
       component: () => import("../views/ReceiveAddress.vue"),
     },
     {
+      path: "/registerwallet",
+      name: "registerwallet",
+      component: () => import("../views/RegisterWallet.vue"),
+    },
+    {
+      path: "/importwallet",
+      name: "importwallet",
+      component: () => import("../views/ImportWallet.vue"),
+    },
+    {
       path: "/reglogwalletpage",
       name: "register login wallet page",
       component: () => import("../views/RegLogWalletPage.vue"),
@@ -63,7 +73,6 @@ const router = createRouter({
       path: "/swap_select_crypto/:type",
       name: "swap_select_crypto",
       component: () => import("../assets/components/SwapSelectCrypto.vue"),
-
     },
     {
       path: '/info_crypto_page',

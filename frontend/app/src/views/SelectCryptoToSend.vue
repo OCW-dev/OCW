@@ -35,5 +35,6 @@ import SelectCryptoSList from "../assets/components/SelectCryptoSList.vue";
   text-align: left;
   white-space: nowrap;
   z-index: 1;
+  top: calc(10 * var(--rpx));
 }
 </style>

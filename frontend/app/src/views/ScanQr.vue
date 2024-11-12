@@ -42,6 +42,7 @@
   line-height: calc(30 * var(--rpx));
   text-align: left;
   white-space: nowrap;
+  top: calc(10 * var(--rpx));
 }
 .find-qr-address {
   display: block;

@@ -58,7 +58,7 @@ export default {
           Balance: 200,
           TelegramId: '987654321',
           WalletName: ['a', 'b'],
-          isActive: true ,
+          isActive: false ,
         },
         {
           AccountName: 'Ilya',

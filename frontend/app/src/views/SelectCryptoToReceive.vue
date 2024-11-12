@@ -35,6 +35,7 @@ import SelectCryptoR from "../assets/components/SelectCryptoRList.vue";
   text-align: left;
   white-space: nowrap;
   z-index: 1;
+  top: calc(10 * var(--rpx));
 }
 .rectangle {
   position: relative;

@@ -6,7 +6,7 @@
     </div>
     <span class="receiving-address">Receiving address</span>
     <span class="enter-wallet-name">Enter wallet</span>
-    <textarea v-model="inputText" placeholder='Input wallet address' class="inline-address"></textarea>
+    <input v-model="inputText" placeholder='Input wallet address' class="inline-address"></input>
     <button class="rectangle" @click="pasteFromClipboard">
       <span class="paste">Paste</span>
       <div class="vector"></div>
@@ -116,6 +116,7 @@ export default {
   text-align: left;
   white-space: nowrap;
   z-index: 1;
+  top: calc(10 * var(--rpx));
 }
 .enter-wallet-name {
   display: block;
