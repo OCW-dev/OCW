@@ -4,6 +4,7 @@ import router from "./router";
 import Cryptoicon from 'vue-cryptoicon';
 import icons from 'vue-cryptoicon/src/icons';
 import store from './store';
+
 const app = createApp(App);
 
 Cryptoicon.add(icons);

@@ -66,7 +66,7 @@ export default {
           Balance: 300,
           TelegramId: '1122334455',
           WalletName: ['c', 'd'],
-          isActive: true,
+          isActive: false,
         },
       ];
       return accounts.find(account => account.isActive);
@@ -74,7 +74,7 @@ export default {
     startLoading() {
       this.interval = setInterval(() => {
         if (this.progress < 100) {
-          this.progress += 2; // Увеличиваем прогресс на 2% каждые 100 мс
+          this.progress += 10; // Увеличиваем прогресс на 2% каждые 100 мс
         } else {
           clearInterval(this.interval);
           const activeAccount = this.getActiveAccount();

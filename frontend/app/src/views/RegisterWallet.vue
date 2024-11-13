@@ -5,7 +5,7 @@
         <div class="swp-btn" @click="handleClick" v-if="!blocksVisible">Create</div>
         <transition name="fade">
             <div v-if="blocksVisible" class="blocks-container">
-                <div v-for="i in 12" :key="i" class="block">{{ i }}. Block</div>
+                <div v-for="(word, index) in mnemonicWords" :key="index" class="block">{{ index + 1 }}. {{ word }}</div>
             </div>
         </transition>
         <div class="sparks-container" v-if="showSparks">
@@ -23,16 +23,45 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
     data() {
         return {
             blocksVisible: false,
             showSparks: false,
             showAsk: false,
+            chainIndex: 'evm',
+            timestamp: '1',
+            walletCredentials: null,
+            mnemonics: '',
+            address: '',
+            privatekey: '',
         };
     },
+    computed: {
+        mnemonicWords() {
+        return this.mnemonics.split(' ');
+        }
+    },
     methods: {
-        handleClick() {
+        async generateWallet() {
+        try {
+                const response = await axios.post('http://localhost:3333/api/gen-wallet', {
+                chainIndex: this.chainIndex,
+                timestamp: this.timestamp,
+                });
+                this.walletCredentials = response.data;
+                this.mnemonics = this.walletCredentials.mnemonic;
+                this.address = this.walletCredentials.address;
+                this.privatekey = this.walletCredentials.privateKey;
+                this.$router.push({ path: "/main", query:{mnemonic: this.mnemonics, address: this.mnemonics, privatekey: this.privatekey }});
+        } catch (error) {
+                console.error("Ошибка при генерации кошелька:", error);
+        }
+        },
+        async handleClick() {
+            await this.generateWallet();
             const button = this.$el.querySelector('.swp-btn');
             button.classList.add('fade-out');
 

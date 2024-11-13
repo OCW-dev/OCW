@@ -37,7 +37,6 @@ onMounted(() => {
     document.addEventListener('click', handleClickOutside);
 });
 
-// Удаляем обработчик события перед уничтожением компонента
 onBeforeUnmount(() => {
     document.removeEventListener('click', handleClickOutside);
 });
@@ -46,29 +45,25 @@ onBeforeUnmount(() => {
 </script>
 <script>
 export default {
-  computed: {
-    UserAccount() {
-      const query = this.$route.query;
-      
-      if (query.AccountName && query.AccountId) {
-        return {
-          AccountName: query.AccountName,
-          AccountId: Number(query.AccountId),
-          Balance: Number(query.Balance),
-          TelegramId: query.TelegramId,
-          WalletName: query.WalletName ? query.WalletName.split(',') : [], // Преобразуем строку обратно в массив
-        };
-      }
-      
-      return null; // Если данных нет, возвращаем null
-    },
+  data() {
+    return {
+      mnemonic: '',
+      address: '',
+      privateKey: ''
+    };
   },
+  mounted() {
+    // Получение данных из query
+    this.mnemonic = this.$route.query.mnemonic || '';
+    this.address = this.$route.query.address || '';
+    this.privateKey = this.$route.query.privatekey || '';
+  }
 };
 </script>
 
 
 <template>
-  <div class="main-container" v-if="UserAccount">
+  <div class="main-container">
     <div class="flex-row-ba">
       <div class="switcher">
         <div class="option" :class="{ selected: selected === 'Contest' }" @click="handleClick('Contest')">Contest</div>
@@ -113,9 +108,9 @@ export default {
       <div v-else-if="selected === 'Wallet'" key="wallet" class="page wallet">
         <div class="rectangle-2">
           <div class="flex-column">
-            <span class="comma">{{ UserAccount.Balance }}</span>
+            <span class="comma"></span>
             <div class="wallet-c-account">
-              <span class="wallet-c">Wallet {{ UserAccount.WalletName[0] }} </span><span class="empty"> </span><span class="account"> {{ UserAccount.AccountName }} </span>
+              <span class="wallet-c">Wallet {{this.address}} </span><span class="empty"> </span><span class="account"> {{ this.privateKey }} </span>
             </div>
             <button class="btn-copy"></button>
           </div>
