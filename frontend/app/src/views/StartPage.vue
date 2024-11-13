@@ -66,7 +66,7 @@ export default {
           Balance: 300,
           TelegramId: '1122334455',
           WalletName: ['c', 'd'],
-          isActive: false,
+          isActive: true,
         },
       ];
       return accounts.find(account => account.isActive);

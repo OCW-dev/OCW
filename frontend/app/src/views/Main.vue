@@ -1,13 +1,13 @@
 <script setup>
 import { RouterLink } from "vue-router";
-import { ref, onMounted, onBeforeUnmount } from "vue"; // Импортируем необходимые функции
+import { ref, onMounted, onBeforeUnmount } from "vue";
 import CryptoList from '../assets/components/CryptoList.vue';
 import { inject } from 'vue';
 
 const isMenuVisible = ref(false);
 const selected = ref('Wallet');
 const transitionName = ref('slide-left');
-const lastUpdated = ref(null); // Добавляем переменную для времени последнего обновления
+const lastUpdated = ref(null); 
 
 function toggleMenu() {
     isMenuVisible.value = !isMenuVisible.value;
@@ -21,11 +21,11 @@ function handleClick(option) {
 }
 
 function handleMenuClick(option) {
-    isMenuVisible.value = false; // Закрываем меню после выбора
+    isMenuVisible.value = false;
 }
 
 function handleClickOutside(event) {
-    const menuElement = document.querySelector('.popup-menu'); // Получаем элемент меню
+    const menuElement = document.querySelector('.popup-menu');
     const buttonElement = event.target.closest('.icon');
 
     if (isMenuVisible.value && menuElement && !menuElement.contains(event.target) && !buttonElement) {
@@ -33,19 +33,23 @@ function handleClickOutside(event) {
     }
 }
 
+onMounted(() => {
+    document.addEventListener('click', handleClickOutside);
+});
+
+// Удаляем обработчик события перед уничтожением компонента
 onBeforeUnmount(() => {
     document.removeEventListener('click', handleClickOutside);
 });
+
 
 </script>
 <script>
 export default {
   computed: {
     UserAccount() {
-      // Получаем данные из строки запроса
       const query = this.$route.query;
       
-      // Проверяем, есть ли необходимые данные
       if (query.AccountName && query.AccountId) {
         return {
           AccountName: query.AccountName,
@@ -80,22 +84,22 @@ export default {
         <ul>
             <RouterLink to="settings_page">
             <li @click="handleMenuClick('настройки')">
-                <img class="icon_menu" src="../assets/images/01abcae0-0b19-4b1e-91a2-b2f570a797ca copy copy.png"  /> Settings
+                <img class="icon_menu" src="../assets/images/settings.png"  /> Settings
             </li>
         </RouterLink>
         <RouterLink to="dapp_connection">
             <li @click="handleMenuClick('подключение Dapp')">
-                <img class="icon_menu" src="../assets/images/01abcae0-0b19-4b1e-91a2-b2f570a797ca copy copy.png" /> Connect Dapp
+                <img class="icon_menu" src="../assets/images/dapp.png" /> Connect Dapp
             </li>
         </RouterLink>
         <RouterLink to="history_page">
             <li @click="handleMenuClick('история')">
-                <img class="icon_menu" src="../assets/images/01abcae0-0b19-4b1e-91a2-b2f570a797ca copy copy.png" /> History
+                <img class="icon_menu" src="../assets/images/history.png" /> History
             </li>
         </RouterLink>
         <RouterLink to="manual_page">
             <li @click="handleMenuClick('инструкция')">
-                <img class="icon_menu" src="../assets/images/01abcae0-0b19-4b1e-91a2-b2f570a797ca copy copy.png"  /> Manual
+                <img class="icon_menu" src="../assets/images/manual.png"  /> Manual
             </li>
         </RouterLink>
         </ul>
@@ -103,8 +107,7 @@ export default {
     
     <transition :name="transitionName">
       <div v-if="selected === 'Contest'" key="contest" class="page contest">
-        <h1 class="contestpagetext">Страница Contest</h1>
-        <p>Здесь будет контент для конкурса.</p>
+        <h1 class="contestpagetext">Contest Page</h1>
       </div>
 
       <div v-else-if="selected === 'Wallet'" key="wallet" class="page wallet">

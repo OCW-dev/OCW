@@ -218,7 +218,6 @@ export default {
 }
 
 .block {
-
     width: calc(150 * var(--rpx)); /* Ширина блока */
     height: calc(50 * var(--rpx)); /* Высота блока */
     margin: calc(10 * var(--rpx)); /* Отступы между блоками */
@@ -229,7 +228,7 @@ export default {
     display: flex; /* Для центрирования текста */
     align-items: center; /* Вертикальное центрирование текста */
     justify-content: center; /* Горизонтальное центрирование текста */
-    border-radius: 10px; /* Закругление углов блока */
+    border-radius: calc(10 * var(--rpx)); /* Закругление углов блока */
 }
 
 .fade-enter-active, .fade-leave-active {
