@@ -10,63 +10,68 @@
       :amount="transaction.amount"
       :timestamp="transaction.timestamp"
       :isLoss="transaction.isLoss"
+      :tag="transaction.tag"
     />
   </div>
 </template>
 
 <script>
 import HistoryItem from './HistoryItem.vue';
+import axios from 'axios';
 
 export default {
   components: {
     HistoryItem
   },
+  async mounted() {
+    await this.getTestTransactions();
+  },
   data() {
     return {
-      transactions: this.getTestTransactions()
+      transactions: [],
+      accountId: '',
     };
   },
   methods: {
-    getTestTransactions() {
-      return [
-        {
-          icon: 'https://cryptologos.cc/logos/bitcoin-btc-logo.png', // Иконка Bitcoin
-          cryptoId: 'BTC',
-          fromAddress: '1A1...Na',
-          toAddress: '3J9...Ly',
-          amount: 0.5,
-          timestamp: '11.03, 16:45',
-          isLoss: false
-        },
-        {
-          icon: 'https://cryptologos.cc/logos/ethereum-eth-logo.png', // Иконка Ethereum
-          cryptoId: 'ETH',
-          fromAddress: '0x3...88',
-          toAddress: '0x5...a6',
-          amount: 2.0,
-          timestamp: '11.03, 16:45',
-          isLoss: true 
-        },
-        {
-          icon: 'https://cryptologos.cc/logos/litecoin-ltc-logo.png', // Иконка LITE
-          cryptoId: 'LITE',
-          fromAddress: 'rUq...s7',
-          toAddress: 'rUq...s8',
-          amount: 100,
-          timestamp: '11.03, 16:45',
-          isLoss: false
-        },
-        {
-          icon: 'https://cryptologos.cc/logos/cardano-ada-logo.png', // Иконка Cardano
-          cryptoId: 'ADA',
-          fromAddress: 'add...s8',
-          toAddress: 'add...s9',
-          amount: 50,
-          timestamp: '11.03, 16:45',
-          isLoss: true
-        }
-      ];
-    }
+    async getTestTransactions() {
+      this.accountId = localStorage.getItem('accountId'); 
+      if (!this.accountId) {
+        console.error('accountId отсутствует в Local Storage');
+        return;
+      }
+
+      try {
+        const response = await axios.post('http://localhost:3333/api/get-history-by-account', { accountId1: this.accountId });
+        
+        const transactionList = response.data.data[0].transactionList;
+
+        // Преобразование данных для компонента HistoryItem
+        this.transactions = transactionList.map(transaction => ({
+          id: transaction.txHash,
+          icon: '', // Здесь можно указать иконку, если она доступна
+          cryptoId: this.formatCryptoId(transaction.symbol), // Используем форматированное значение symbol
+          fromAddress: this.formatAddress(transaction.from[0].address), // Форматируем адрес отправителя
+          toAddress: this.formatAddress(transaction.to[0].address), // Форматируем адрес получателя
+          amount: transaction.amount,
+          timestamp: new Date(parseInt(transaction.txTime)).toISOString(),
+          isLoss: false, // Определите логику для isLoss, если необходимо
+          tag: transaction.tag || ' ' // Добавляем тег или значение по умолчанию
+        }));
+
+        console.log('Транзакции успешно загружены:', this.transactions);
+      } catch (error) {
+        console.error('Ошибка при получении истории транзакций:', error);
+      }
+    },
+    formatAddress(address) {
+      if (!address || address.length < 8) return address; // Проверка на корректность адреса
+      return `${address.slice(0, 5)}...${address.slice(-3)}`; // Форматирование адреса
+    },
+    formatCryptoId(symbol) {
+      if (!symbol || symbol.length <= 10) return symbol; // Если длина <= 10, возвращаем как есть
+      return `${symbol.slice(0, 10)}...`; // Сокращаем до первых 10 символов и добавляем многоточие
+    },
+    
   }
 };
 </script>

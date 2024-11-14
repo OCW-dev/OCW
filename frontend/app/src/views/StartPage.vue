@@ -42,50 +42,17 @@ export default {
     clearInterval(this.interval);
   },
   methods: {
-    getActiveAccount() {
-      const accounts = [
-        {
-          AccountName: 'Nikita',
-          AccountId: 1,
-          Balance: 100,
-          TelegramId: '123456789',
-          WalletName: ['a', 'b', 'c', 'd'],
-          isActive: false,
-        },
-        {
-          AccountName: 'Kostya',
-          AccountId: 2,
-          Balance: 200,
-          TelegramId: '987654321',
-          WalletName: ['a', 'b'],
-          isActive: false ,
-        },
-        {
-          AccountName: 'Ilya',
-          AccountId: 3,
-          Balance: 300,
-          TelegramId: '1122334455',
-          WalletName: ['c', 'd'],
-          isActive: false,
-        },
-      ];
-      return accounts.find(account => account.isActive);
-    },
     startLoading() {
       this.interval = setInterval(() => {
         if (this.progress < 100) {
           this.progress += 10; // Увеличиваем прогресс на 2% каждые 100 мс
         } else {
           clearInterval(this.interval);
-          const activeAccount = this.getActiveAccount();
+          const activeAccount = localStorage.getItem('accountId');
           if (activeAccount) {
-            this.$router.push({ path: '/main', query: { AccountName: activeAccount.AccountName,
-                                                        AccountId: activeAccount.AccountId,
-                                                        Balance: activeAccount.Balance,
-                                                        TelegramId: activeAccount.TelegramId,
-                                                        WalletName: activeAccount.WalletName.join(','),} });
+            this.$router.push({ path: '/main' });
           } else {
-            this.$router.push({ path: '/reglogwalletpage', query: { Hello: "Hello"}});
+            this.$router.push({ path: '/reglogwalletpage'});
           }
         }
       }, 50);

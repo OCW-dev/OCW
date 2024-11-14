@@ -36,18 +36,38 @@ export default {
           amount: 1, //Баланс по блокчейну
         },
         {
-          icon: 'https://cryptologos.cc/logos/solana-sol-logo.png',
-          chainId: 'Solana',
-          amount: 2, //Баланс по блокчейну
-        },
-        {
           icon: 'https://cryptologos.cc/logos/polygon-matic-logo.png',
           chainId: 'Polygon',
           amount: 10, //Баланс по блокчейну
         },
         {
-          icon: 'https://cryptologos.cc/logos/tron-trx-logo.png',
-          chainId: 'Tron',
+          icon: 'https://cryptologos.cc/logos/avalanche-avax-logo.png',
+          chainId: 'Avalanche ',
+          amount: 100, //Баланс по блокчейну
+        },
+        {
+          icon: 'https://cryptologos.cc/logos/fantom-ftm-logo.png',
+          chainId: 'Fantom',
+          amount: 100, //Баланс по блокчейну
+        },
+        {
+          icon: 'https://cryptologos.cc/logos/arbitrum-arb-logo.png',
+          chainId: 'Arbitrum',
+          amount: 100, //Баланс по блокчейну
+        },
+        {
+          icon: 'https://cryptologos.cc/logos/optimism-ethereum-op-logo.png',
+          chainId: 'Optimism',
+          amount: 100, //Баланс по блокчейну
+        },
+        {
+          icon: 'https://cryptologos.cc/logos/harmony-one-logo.png',
+          chainId: 'Harmony',
+          amount: 100, //Баланс по блокчейну
+        },
+        {
+          icon: 'https://cryptologos.cc/logos/cronos-cro-logo.png',
+          chainId: 'Cronos',
           amount: 100, //Баланс по блокчейну
         },
       ];

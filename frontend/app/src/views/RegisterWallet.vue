@@ -32,11 +32,12 @@ export default {
             showSparks: false,
             showAsk: false,
             chainIndex: 'evm',
-            timestamp: '1',
-            walletCredentials: null,
+            timestamp: '',
+            Credentials: null,
             mnemonics: '',
             address: '',
             privatekey: '',
+            accountId: '',
         };
     },
     computed: {
@@ -51,12 +52,20 @@ export default {
                 chainIndex: this.chainIndex,
                 timestamp: this.timestamp,
                 });
-                this.walletCredentials = response.data;
-                this.mnemonics = this.walletCredentials.mnemonic;
-                this.address = this.walletCredentials.address;
-                this.privatekey = this.walletCredentials.privateKey;
-                this.$router.push({ path: "/main", query:{mnemonic: this.mnemonics, address: this.mnemonics, privatekey: this.privatekey }});
-        } catch (error) {
+                this.Credentials = response.data;
+
+                this.mnemonics = this.Credentials.walletCreds.mnemonic;
+                this.address = this.Credentials.walletCreds.address;
+                this.privatekey = this.Credentials.walletCreds.privateKey;
+                this.accountId = this.Credentials.accountCreds.data[0].accountId;
+                
+
+                localStorage.setItem('mnemonic', this.mnemonics);
+                localStorage.setItem('address', this.address);
+                localStorage.setItem('privatekey', this.privatekey);
+                localStorage.setItem('accountId', this.accountId);
+
+            } catch (error) {
                 console.error("Ошибка при генерации кошелька:", error);
         }
         },
@@ -79,7 +88,7 @@ export default {
             this.showAsk = false;
         },
         continuefinal() {
-            this.$router.push({ path: "/" });
+            this.$router.push({ path: "/main"});
         }
 
     },

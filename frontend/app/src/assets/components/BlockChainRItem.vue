@@ -2,7 +2,6 @@
   <div class="chain-item" @click="goToSelectCrypto">
     <span class="name"> {{ chainId }}</span>
     <img :src="chainicon" alt="crypto icon" class="chainicon">
-    <span class="amount">{{ amount }}</span>
   </div>
 </template>
 
@@ -15,8 +14,8 @@ export default {
   },
   methods: {
     goToSelectCrypto() {
-      this.$router.push({ path: '/select_crypto_to_receive', query: { 
-        blockchain: this.chainId,
+      this.$router.push({ path: '/my_receive_adress', query: { 
+        currency: this.chainId,
       }});
     },
   }

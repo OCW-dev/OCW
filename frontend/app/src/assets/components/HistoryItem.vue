@@ -1,11 +1,11 @@
 <template>
   <div class="transaction-item">
-    <span class="cryptoId">{{ cryptoId }}</span>
+    <span class="cryptoId">{{ cryptoId }} </span><span class="cryptoId2">{{ tag }} </span>
     <span class="dollar-a">Your: {{ fromAddress }}</span>
     <img :src="icon" alt="crypto icon" class="picture-coin">
     <span class="dollar-b">Else: {{ toAddress }}</span>
     <span :class="{ loss: isLoss, gain: !isLoss }">{{ formatAmount(amount) }}</span>
-    <span class="dot">{{ timestamp }}</span>
+    <span class="dot">{{ formatDate(timestamp) }}</span>
   </div>
 </template>
 
@@ -18,12 +18,28 @@ export default {
     toAddress: String,
     amount: Number,
     timestamp: String,
-    isLoss: Boolean
+    isLoss: Boolean,
+    tag: String,
   },
 
   methods: {
     formatAmount(amount) {
         return (this.isLoss ? '-' : '+') + Math.abs(amount).toFixed(2); 
+    },
+    formatDate(dateString) {
+    // Преобразуем строку в объект Date
+    const date = new Date(dateString);
+
+    // Получаем компоненты даты
+    const day = String(date.getUTCDate()).padStart(2, '0'); // День
+    const month = String(date.getUTCMonth() + 1).padStart(2, '0'); // Месяц (0-11, поэтому +1)
+    const year = date.getUTCFullYear(); // Год
+    const hours = String(date.getUTCHours()).padStart(2, '0'); // Часы
+    const minutes = String(date.getUTCMinutes()).padStart(2, '0'); // Минуты
+
+    // Формируем строку в нужном формате
+    return `${day}.${month}.${year} ${hours}:${minutes}`;
+    
     }
   }
 };
@@ -55,6 +71,23 @@ export default {
   white-space: nowrap;
   z-index: 13;
 }
+.cryptoId2 {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  position: absolute;
+  height: calc(20 * var(--rpx));
+  top: 0;
+  left: calc(150 * var(--rpx));
+  color: #B91C1C;
+  font-family: Montserrat, var(--default-font-family);
+  font-size: calc(12 * var(--rpx));
+  font-weight: 600;
+  line-height: calc(19.503999710083008 * var(--rpx));
+  text-align: left;
+  white-space: nowrap;
+  z-index: 13;
+}
 
 .flex-row-e {
   position: relative;
@@ -71,7 +104,7 @@ export default {
   position: absolute;
   height: calc(20 * var(--rpx));
   top: 0;
-  left: calc(301 * var(--rpx));
+  left: calc(254 * var(--rpx));
   color: #ffffff;
   font-family: Montserrat, var(--default-font-family);
   font-size: calc(16 * var(--rpx));

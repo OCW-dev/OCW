@@ -7,7 +7,7 @@ import { inject } from 'vue';
 const isMenuVisible = ref(false);
 const selected = ref('Wallet');
 const transitionName = ref('slide-left');
-const lastUpdated = ref(null); 
+const lastUpdated = ref(null);
 
 function toggleMenu() {
     isMenuVisible.value = !isMenuVisible.value;
@@ -41,22 +41,46 @@ onBeforeUnmount(() => {
     document.removeEventListener('click', handleClickOutside);
 });
 
-
 </script>
+
 <script>
 export default {
   data() {
     return {
       mnemonic: '',
       address: '',
-      privateKey: ''
+      privateKey: '',
+      accountId: '',
+      balance: '',
     };
   },
   mounted() {
-    // Получение данных из query
-    this.mnemonic = this.$route.query.mnemonic || '';
-    this.address = this.$route.query.address || '';
-    this.privateKey = this.$route.query.privatekey || '';
+    const walletData = this.getWalletData();
+    this.mnemonic = walletData.mnemonic;
+    this.address = walletData.address;
+    this.privateKey = walletData.privateKey;
+    this.accountId = walletData.accountId;
+    this.balance = walletData.balance;
+  },
+  methods: {
+    getWalletData() {
+      const mnemonic = localStorage.getItem('mnemonic');
+      const address = localStorage.getItem('address');
+      const privateKey = localStorage.getItem('privatekey'); 
+      const accountId = localStorage.getItem('accountId'); 
+      const balance = localStorage.getItem('balance'); 
+      return { mnemonic, address, privateKey, accountId, balance };
+    },
+    formatAddress(address) {
+      if (!address || address.length < 8) return address; // Проверка на корректность адреса
+      return `${address.slice(0, 5)}...${address.slice(-3)}`; // Форматирование адреса
+    },
+    copyAddress() {
+      navigator.clipboard.writeText(this.address).then(() => {
+      }).catch(err => {
+        console.error('Ошибка при копировании: ', err);
+      });
+    },
   }
 };
 </script>
@@ -108,11 +132,11 @@ export default {
       <div v-else-if="selected === 'Wallet'" key="wallet" class="page wallet">
         <div class="rectangle-2">
           <div class="flex-column">
-            <span class="comma"></span>
+            <span class="comma">{{balance.slice(0, 6)}}</span>
             <div class="wallet-c-account">
-              <span class="wallet-c">Wallet {{this.address}} </span><span class="empty"> </span><span class="account"> {{ this.privateKey }} </span>
+              <span class="wallet-c">Wallet evm </span><span class="empty"> </span><span class="account"> {{ formatAddress(accountId) }} </span>
             </div>
-            <button class="btn-copy"></button>
+            <button class="btn-copy" @click="copyAddress"></button>
           </div>
           <div class="image"></div>
           <span class="dollar">$</span>
@@ -426,7 +450,7 @@ button:active {
   width: calc(15 * var(--rpx));
   height: calc(15 * var(--rpx));
   top: 5.08%;
-  left: 80.54%;
+  left: 90.54%;
   background: url(../assets/images/e92445fd-06c6-49c2-bdac-1d6b07a370f0.png)
     no-repeat center;
   background-size: 100% 100%;

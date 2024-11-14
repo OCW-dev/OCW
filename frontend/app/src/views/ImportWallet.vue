@@ -1,6 +1,6 @@
 <template>
     <div class="main-container">
-    <span class="scr-phrase" >Enter your secret phrase</span>
+        <span class="scr-phrase">Enter your secret phrase</span>
         <div class="blocks-container">
             <div v-for="i in 12" :key="i" class="block">
                 <span>{{ i }}.</span>
@@ -14,36 +14,58 @@
             </div>
         </div>
         <div class="button-container">
-        <button 
-            class="import-button" 
-            :disabled="!allInputsFilled" 
-            @click="importData"
-        >
-            Import
-        </button>
+            <button 
+                class="import-button" 
+                :disabled="!allInputsFilled" 
+                @click="importData">
+                Import
+            </button>
         </div>
     </div>
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
     data() {
         return {
-            inputValues: Array(12).fill(''), // Массив для хранения значений input
-        };
+            inputValues: Array(12).fill(''),             
+            importedWalletCreds: null,
+            chainIndex: 'evm',
+            timestamp: '',
+            mnemonics: '',
+            address: '',
+            privateKey: '',  // Исправлено на 'privateKey'
+            accountId: '',
+        }
     },
     computed: {
         allInputsFilled() {
-            return this.inputValues.every(value => value.trim() !== ''); // Проверка, заполнены ли все input
+            return this.inputValues.every(value => value.trim() !== '');
         }
     },
     methods: {
-        importData() {
-            // Логика для обработки данных перед переходом
-            console.log(this.inputValues); // Здесь вы можете обработать данные по своему усмотрению
+        async importData() {
+            const secretPhrase = this.inputValues.join(' '); 
 
-            // Переход на главную страницу
-            this.$router.push({ path: '/' });
+            try {
+                const response = await axios.post('http://localhost:3333/api/save-mnemonics', { mnemonics: secretPhrase });
+                this.importedWalletCreds = response.data;
+
+                const { mnemonic, privateKey, accountId, address, chainsIndexes, balance } = this.importedWalletCreds;
+
+                localStorage.setItem('mnemonic', mnemonic);
+                localStorage.setItem('privateKey', privateKey);
+                localStorage.setItem('accountId', accountId);
+                localStorage.setItem('address', address);
+                localStorage.setItem('chainsIndexes', chainsIndexes);
+                localStorage.setItem('balance', balance);
+                
+                this.$router.push({ path: '/main' });
+            } catch (error) {
+                console.error('Ошибка при импорте данных:', error);
+            }
         }
     }
 };
@@ -53,21 +75,21 @@ export default {
 .blocks-container {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center; /* Центрируем блоки по горизонтали */
+    justify-content: center;
 }
 
 .block {
-    width: calc(150 * var(--rpx)); /* Ширина блока */
-    height: calc(50 * var(--rpx)); /* Высота блока */
-    margin: calc(10 * var(--rpx)); /* Отступы между блоками */
+    width: calc(150 * var(--rpx)); 
+    height: calc(50 * var(--rpx)); 
+    margin: calc(10 * var(--rpx));
     font-family: Montserrat, var(--default-font-family);
     font-size: calc(18 * var(--rpx));
-    background-color: #3e3e3e; /* Цвет фона блока */
-    color: #ffffff; /* Цвет текста */
-    display: flex; /* Для центрирования текста */
-    align-items: center; /* Вертикальное центрирование текста */
-    justify-content: center; /* Горизонтальное центрирование текста */
-    border-radius: calc(10 * var(--rpx)); /* Закругление углов блока */
+    background-color: #3e3e3e; 
+    color: #ffffff; 
+    display: flex; 
+    align-items: center;
+    justify-content: center; 
+    border-radius: calc(10 * var(--rpx)); 
 }
 
 .import-button {
