@@ -8,7 +8,7 @@ import fs from "fs";
 import path from 'path';
 
 import crypto from 'crypto';
-import Wallet from './Wallet.js';
+import Wallet from '../../../Wallet.js';
 import {EthWallet, MessageTypes} from "@okxweb3/coin-ethereum";
 
 const app = express();
