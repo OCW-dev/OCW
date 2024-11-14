@@ -1,15 +1,15 @@
-const express = require('express');
-const sqlite3 = require('sqlite3').verbose();
-const cors = require('cors');
-const bodyParser = require('body-parser');
+import express from 'express';
+import sqlite3 from 'sqlite3';
+import cors from 'cors';
+import bodyParser from 'body-parser'
 
 import https from "https";
 import fs from "fs";
 import path from 'path';
 
-const crypto = require('crypto');
-const Wallet = require('./Wallet.js');
-const { EthWallet, MessageTypes } = require("@okxweb3/coin-ethereum");
+import crypto from 'crypto';
+import Wallet from './Wallet.js';
+import {EthWallet, MessageTypes} from "@okxweb3/coin-ethereum";
 
 const app = express();
 const port = 3333;
