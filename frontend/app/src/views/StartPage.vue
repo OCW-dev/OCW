@@ -35,6 +35,7 @@ export default {
     };
   },
   mounted() {
+    //localStorage.clear();
     this.circumference = 2 * Math.PI * this.radius;
     this.startLoading();
   },

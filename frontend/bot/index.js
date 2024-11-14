@@ -4,7 +4,7 @@ require('dotenv').config();
 
 const token = '7385369570:AAHeA_m0Zg65LO4bNm7fcisEUCngHyLS-8Q';
 
-const webAppurl = 'https://67210e7fb7aba61dc652b94e--taupe-kitsune-b8b1f3.netlify.app/';
+const webAppurl = 'https://lovely-duckanoo-149969.netlify.app/';
 
 
 console.log(token);

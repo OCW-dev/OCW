@@ -42,7 +42,8 @@ export default {
 
       try {
         const response = await axios.post('http://localhost:3333/api/get-history-by-account', { accountId1: this.accountId });
-        
+        //const response = await axios.post('https://ocwvpn.ru:3333/api/get-history-by-account', { accountId1: this.accountId });
+
         const transactionList = response.data.data[0].transactionList;
 
         // Преобразование данных для компонента HistoryItem
